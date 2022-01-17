@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import AddMessage from './containers/AddMessage';
 import MessagesList from './containers/MessagesList';
 import Sidebar from './containers/Sidebar';
