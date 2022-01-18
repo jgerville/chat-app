@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import createSagaMiddleware from '@redux-saga/core';
+import { applyMiddleware } from 'redux';
 
 import './index.css';
 import App from './App';
-import { addUser } from './actions';
-import configureStore from './store';
+import setupSocket from './sockets';
+import username from './utils/name';
+import rootReducer from './reducers/root';
+import logger from 'redux-logger';
 
-const store = configureStore();
 
-store.dispatch(addUser('Me'));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger));
+const socket = setupSocket(store.dispatch, username);
+sagaMiddleware.run(handleNewMessage, {socket, username})
 
 ReactDOM.render(
   <React.StrictMode>
