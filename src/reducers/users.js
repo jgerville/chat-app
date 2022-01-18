@@ -4,12 +4,12 @@ const users = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case ADD_USER:
-      return state.concat([
+      return [...state,
         {
           name: action.name,
           id: action.id,
         },
-      ]);
+      ];
     case USERS_LIST:
       return action.users;
     default:

@@ -1,16 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import Sidebar from '../components/Sidebar';
 
-const Sidebar = props => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const mapStateToProps = ({ users }) => ({
+  users,
+});
 
-Sidebar.propTypes = {
-
-}
-
-export default Sidebar
+export default connect(mapStateToProps)(Sidebar);
