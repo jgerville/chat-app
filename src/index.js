@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from '@redux-saga/core';
-import { applyMiddleware } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 
 import './index.css';
 import App from './App';
@@ -10,6 +10,7 @@ import setupSocket from './sockets';
 import username from './utils/name';
 import rootReducer from './reducers/root';
 import logger from 'redux-logger';
+import { handleNewMessage } from './sagas';
 
 
 const sagaMiddleware = createSagaMiddleware();

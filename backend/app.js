@@ -4,17 +4,17 @@ const wss = new WebSocket.Server({ port: 8989 });
 
 const users = [];
 
-const broadcast = (data, wss) => {
+const broadcast = (data, ws) => {
   for (const client of wss.clients) {
-    if (client.readyState === WebSocket.OPEN && client !== wss) {
+    if (client.readyState === WebSocket.OPEN && client !== ws) {
       client.send(JSON.stringify(data))
     }
   }
 }
 
-wss.on('connection', (wss) => {
+wss.on('connection', (ws) => {
   let index;
-  wss.on('message', (message) => {
+  ws.on('message', (message) => {
     const data = JSON.parse(message);
     switch (data.type) {
       case 'ADD_USER':
@@ -23,32 +23,33 @@ wss.on('connection', (wss) => {
           name: data.name,
           id: index + 1,
         })
-        wss.send(JSON.stringify({
+        ws.send(JSON.stringify({
           type: 'USERS_LIST',
           users,
         }))
         broadcast({
           type: 'USERS_LIST',
           users,
-        }, wss)
+        }, ws)
         break;
       case 'ADD_MESSAGE':
         broadcast({
           type: 'ADD_MESSAGE',
           message: data.message,
           author: data.author,
-        }, wss)
+        }, ws)
         break;
       default:
         break;
     }
   })
-})
 
-wss.on('close', () => {
-  users.splice(index, 1)
-  broadcast({
-    type: 'USERS_LIST',
-    users,
-  }, wss)
+  
+  ws.on('close', () => {
+    users.splice(index, 1)
+    broadcast({
+      type: 'USERS_LIST',
+      users,
+    }, ws)
+  })
 })
