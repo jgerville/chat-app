@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/root';
-import App from './App';
-import logger from 'redux-logger';
-import { addUser } from './actions';
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+import './index.css';
+import App from './App';
+import { addUser } from './actions';
+import configureStore from './store';
+
+const store = configureStore();
 
 store.dispatch(addUser('Me'));
 
