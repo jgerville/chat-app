@@ -13,7 +13,8 @@ const AddMessage = ({ sendMessage }) => {
   
   return (
     <section id='new-message'>
-      <input 
+      <input
+        autoFocus
         type='text' 
         onKeyPress={handleInput}
         ref={(node) => {input = node}}

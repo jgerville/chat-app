@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Sidebar = ({ users }) => {
-  const mapper = () => (
+  const mappedUsers = () => (
     users.map(user => (
       <li key={user.id}>{user.name}</li>
     ))
@@ -11,10 +11,7 @@ const Sidebar = ({ users }) => {
   return (
     <aside id='sidebar' className='sidebar'>
       <ul>
-        {/* {users.map(user => (
-          <li key={user.id}>{user.name}</li>
-        ))} */}
-        { users ? mapper() : null}
+        { users ? mappedUsers() : null}
       </ul>
     </aside>
   )

@@ -20,13 +20,23 @@ body {
     grid-area: main;
 }
 #new-message {
+    grid-area: main;
     position: fixed;
     bottom: 0;
-    width: 100%;
-    padding: 5px;
+    width: 74.9%;
+    /* padding: 5px; */
     margin-left: 0px;
     border-top: 1px solid #3f3f3f;
+    display: flex;
+    justify-content: center;
 }
+
+#new-message input {
+    width: 98%;
+    margin: 0.5rem;
+    padding: 0.3rem;
+}
+
 #messages-list {
     padding: 5px 0 0 5px;
 }

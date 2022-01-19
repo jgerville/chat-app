@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Message from './Message';
 
 const MessagesList = ({ messages }) => {
-  const mapper = () => (
+  const mappedMessages = () => (
     messages.map(message => (
       <Message key={message.id} {...message} />
     ))
@@ -12,10 +12,7 @@ const MessagesList = ({ messages }) => {
   return (
     <section id="messages-list">
       <ul>
-        {/* {messages.map(message => (
-          <Message key={message.id} {...message} />
-        ))} */}
-        {messages ? mapper() : null}
+        {messages ? mappedMessages() : null}
       </ul>
     </section>
   );
